@@ -1,0 +1,16 @@
+# Ignorer les dépendances
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Ignorer Expo et React Native
+.expo/
+.expo-shared/
+android/
+ios/
+
+# Ignorer les fichiers temporaires
+*.log
+.cache/
+build/

@@ -1,0 +1,24 @@
+npm install --save-dev eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks @typescript-eslint/parser @typescript-eslint/eslint-plugin
+
+ensuite tu fais ca:
+rm -rf node_modules package-lock.json
+puis ca :
+npm install
+puis ca;
+npm run lint
+puis ca:
+npm run format
+ensuite tu corrige les erreurs qu il te reste
+
+et si il y a un no-unused-vars dans eslint.config.js:
+tu mets ca:
+rules: {
+      "no-unused-vars": "off", // Désactive complètement la règle
+      "@typescript-eslint/no-unused-vars": "off", // Désactive pour TypeScript
+
+npm run lint:fix
+
+Remove-Item -Recurse -Force node_modules
+Remove-Item -Force package-lock.json
+
+mettre en read only si jamais ca veut pas
