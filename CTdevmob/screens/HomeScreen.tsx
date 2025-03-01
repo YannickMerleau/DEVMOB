@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { Phone } from '../components/Phone';
 import phoneData from '../donnees/phone.json';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 type HomeScreenNavigationProp = StackNavigationProp<any, 'Home'>;
 
@@ -70,12 +71,24 @@ const HomeScreen: React.FC = () => {
       </View>
 
       {/* Champ de recherche */}
-      <TextInput
-        style={styles.searchBar}
-        placeholder="Rechercher un téléphone"
-        value={searchQuery}
-        onChangeText={setSearchQuery}
-      />
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchBar}
+          placeholder="Rechercher un téléphone"
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
+        {searchQuery.length > 0 && (
+          <TouchableOpacity onPress={() => setSearchQuery('')}>
+            <Icon
+              name="close-circle"
+              size={24}
+              color="red"
+              style={styles.clearIcon}
+            />
+          </TouchableOpacity>
+        )}
+      </View>
 
       {/* Bouton pour afficher/masquer les filtres */}
       <TouchableOpacity onPress={() => setShowFilters(!showFilters)}>
@@ -203,13 +216,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
   },
-  searchBar: {
-    height: 40,
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%', // ✅ Assurer que le champ de recherche prend toute la largeur
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: 10,
     marginBottom: 10,
+  },
+  searchBar: {
+    flex: 1,
+    height: 40,
+  },
+  clearIcon: {
+    marginLeft: 10,
   },
   toggleFilters: {
     textAlign: 'center',
